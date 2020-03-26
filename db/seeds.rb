@@ -116,3 +116,4 @@ m3_tutorial.videos.create!({
 })
 
 User.create!(email: 'admin@example.com', first_name: 'Bossy', last_name: 'McBosserton', password:  "password", role: :admin)
+User.create!(email: 'reg@example.com', first_name: 'Batman', last_name: 'Wayne', password:  "password", role: :default)

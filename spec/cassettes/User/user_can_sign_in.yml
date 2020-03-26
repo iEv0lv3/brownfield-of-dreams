@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.github.com/user/repos?access_token=50a6e6758c1cb0a4011d4402414f65be
+    uri: https://api.github.com/user/repos?access_token=714ea57bc17d9ef5af58cbda90cab56c
     body:
       encoding: US-ASCII
       string: ''
@@ -33,9 +33,9 @@ http_interactions:
       X-Ratelimit-Limit:
       - '60'
       X-Ratelimit-Remaining:
-      - '56'
+      - '57'
       X-Ratelimit-Reset:
-      - '1585201576'
+      - '1585201577'
       Access-Control-Expose-Headers:
       - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
         X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval,
@@ -57,7 +57,7 @@ http_interactions:
       Vary:
       - Accept-Encoding, Accept, X-Requested-With
       X-Github-Request-Id:
-      - DCFC:48DC:59AA0:81B81:5E7C361B
+      - DCEA:46A4:BA9BA:105A5E:5E7C361B
     body:
       encoding: UTF-8
       string: '{"message":"Bad credentials","documentation_url":"https://developer.github.com/v3"}'
