@@ -1,13 +1,5 @@
-require './app/models/github/repo'
-
 class UsersController < ApplicationController
   def show
-    repo_response = Faraday.get("https://api.github.com/user/repos?access_token=#{Figaro.env.github_personal_token}")
-    user_body = JSON.parse(repo_response.body, symbolize_names: true)
-    repos = user_body[1..5]
-    @repo_objects = repos.map do |repo|
-      Repo.new(repo)
-    end
   end
 
   def new
