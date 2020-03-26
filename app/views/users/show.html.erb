@@ -12,11 +12,41 @@
   </section>
   <% if !current_user.token.nil? %>
     <section class='github'>
+      <section class='repos'>
+      <h2>Repos:</h2>
         <% current_user.my_repos.each do |repo| %>
-          <div id="repo-<%= repo.name %>">
+          <div id="repo-<%= repo.id %>">
             <%= link_to repo.name, repo.url %>
           </div>
         <% end %>
+      </section>
+
+      <section class='followers'>
+        <h2>Followers:</h2>
+        <% if current_user.my_followers.empty? %>
+          <p>User has no followers.</p>
+        <% else %>
+          <% current_user.my_followers.each do |follower| %>
+            <div id="follower-<%= follower.id %>">
+              <%= link_to follower.name, follower.url %>
+            </div>
+          <% end %>
+        <% end %>
+      </section>
+
+      <section class='following'>
+        <h2>Following:</h2>
+        <% if current_user.following.empty? %>
+          <p>User is not following anyone.</p>
+        <% else %>
+          <% current_user.following.each do |follower| %>
+            <div id="follower-<%= follower.id %>">
+              <%= link_to follower.name, follower.url %>
+            </div>
+          <% end %>
+        <% end %>
+      </section>
+
     </section>
   <% end %>
 </section>

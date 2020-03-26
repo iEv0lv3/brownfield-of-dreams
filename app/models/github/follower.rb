@@ -1,9 +1,9 @@
-class Repo
+class Follower
   attr_reader :name, :url, :id
 
   def initialize(data = Hash.new)
-    @name = data[:name]
-    @url = data[:html_url]
+    @user_name = data[:login]
+    @url = data[:url]
     @id = data[:id]
   end
 end

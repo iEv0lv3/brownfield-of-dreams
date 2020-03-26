@@ -1,4 +1,5 @@
 require './app/models/github/repo'
+require './app/models/github/follower'
 
 class User < ApplicationRecord
   has_many :user_videos
@@ -15,6 +16,22 @@ class User < ApplicationRecord
     repos = github_service.repos
     repos.map do |repo|
       Repo.new(repo)
+    end
+  end
+
+  def my_followers
+    github_service = GithubService.new(self.token)
+    followers = github_service.followers
+    followers.map do |follower|
+      Follower.new(follower)
+    end
+  end
+
+  def following
+    github_service = GithubService.new(self.token)
+    following = github_service.following
+    following.map do |follower|
+      Follower.new(follower)
     end
   end
 end
