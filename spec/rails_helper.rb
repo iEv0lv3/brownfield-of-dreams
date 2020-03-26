@@ -15,6 +15,7 @@ VCR.configure do |config|
   config.configure_rspec_metadata!
   config.filter_sensitive_data("<YOUTUBE_API_KEY>") { ENV['YOUTUBE_API_KEY'] }
   config.filter_sensitive_data("<github_personal_token>") { ENV['github_personal_token'] }
+  config.filter_sensitive_data("<github_personal_token2>") { ENV['github_personal_token2'] }
 end
 
 
