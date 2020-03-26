@@ -15,7 +15,7 @@
       <section class='repos'>
       <h2>Repos:</h2>
         <% current_user.my_repos.each do |repo| %>
-          <div id="repo-<%= repo.name %>">
+          <div id="repo-<%= repo.id %>">
             <%= link_to repo.name, repo.url %>
           </div>
         <% end %>
