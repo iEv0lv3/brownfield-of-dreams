@@ -32,6 +32,9 @@ Rails.application.routes.draw do
   get '/about', to: 'about#show'
   get '/get_started', to: 'get_started#show'
 
+  # GitHub OmniAuth
+  get '/auth/:provider/callback', to: 'sessions#update'
+
   # Is this being used?
   get '/video', to: 'video#show'
 
