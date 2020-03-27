@@ -2,8 +2,8 @@ class Follower
   attr_reader :name, :url, :id
 
   def initialize(data = Hash.new)
-    @user_name = data[:login]
-    @url = data[:url]
+    @name = data[:login]
+    @url = data[:html_url]
     @id = data[:id]
   end
 end
