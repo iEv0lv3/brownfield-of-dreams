@@ -31,4 +31,15 @@ describe 'A registered user' do
     click_on 'Bookmark'
     expect(page).to have_content("Already in your bookmarks")
   end
+  it 'users not logged in will see message when trying to bookmark' do
+    tutorial= create(:tutorial)
+    video = create(:video, tutorial_id: tutorial.id)
+
+    visit tutorial_path(tutorial)
+
+    expect {
+      click_on 'Bookmark'
+    }.to change { UserVideo.count }.by(0)
+    expect(page).to have_content("User must login to bookmark videos")
+  end
 end
