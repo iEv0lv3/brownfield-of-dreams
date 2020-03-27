@@ -1,13 +1,13 @@
 class GithubService
   def initialize(token)
     @token = token
-    # I want to create a universal api connection. Headers are the issue here.
+
+    # This connection wants 2 arguments, not 3.
 
     # @connection = Faraday.new(
-    #   url: "https://api.github.com/user",
-    #   headers: { 'Accept': 'application/vnd.github.v3+json',
-    #              'Authorization': "access_token #{@token}"
-    #   }
+    #   "https://api.github.com/user",
+    #   nil,
+    #   { 'Accept': 'application/vnd.github.v3+json', 'Authorization': "token #{@token}" }
     # )
   end
 
