@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'As a guest user', type: :feature do
-  describe 'When I visit /' do
+  xdescribe 'When I visit /' do
 
     it "I click the 'Register' link and should be on /register" do
 
