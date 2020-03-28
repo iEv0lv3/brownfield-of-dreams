@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 RSpec.describe 'GET /auth/github/callback', type: :request do
@@ -27,8 +25,7 @@ RSpec.describe 'GET /auth/github/callback', type: :request do
   end
 
   describe 'When I view my dashboard' do
-    vcr_options = { record: :new_episodes }
-    it 'I can link my github account', :js, vcr: vcr_options do
+    it 'I can link my github account', :vcr do
       user = create(:user)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
