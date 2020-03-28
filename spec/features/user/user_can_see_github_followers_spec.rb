@@ -3,8 +3,7 @@ require 'rails_helper'
 RSpec.describe 'As a user', type: :feature do
 
   describe 'When I view my dashboard' do
-    vcr_options = { :record => :new_episodes }
-    it 'I can see all of my github followers', :js, :vcr => vcr_options do
+    it 'I can see all of my github followers', :vcr do
 
       @user = create(:user, token: Figaro.env.github_personal_token)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
@@ -22,8 +21,7 @@ RSpec.describe 'As a user', type: :feature do
   end
 
   describe 'When I view my dashboard as a different user' do
-    vcr_options = { :record => :new_episodes }
-    it 'I can see all of my github followers', :js, :vcr => vcr_options do
+    it 'I can see all of my github followers', :vcr do
 
       @user2 = create(:user, token: Figaro.env.github_personal_token2)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user2)
