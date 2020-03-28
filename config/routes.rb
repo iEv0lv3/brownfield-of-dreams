@@ -29,9 +29,9 @@ Rails.application.routes.draw do
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
 
-  namespace :users do
-    get '/:user_id/activate', to: 'email#show'
-  end
+  # namespace :users do
+  #   get '/:user_id/activate', to: 'email#show'
+  # end
 
   get '/dashboard', to: 'users#show'
   get '/about', to: 'about#show'
