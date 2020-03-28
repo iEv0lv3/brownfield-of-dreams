@@ -7,11 +7,11 @@ RSpec.describe 'As a guest user', type: :feature do
 
       visit '/register'
 
-      fill_in :email, with('rick@rolled.com')
-      fill_in :first_name, with('Rick')
-      fill_in :last_name, with('Astley')
-      fill_in :password, with('12345')
-      fill_in :password_confirmation, with('12345')
+      fill_in :email, with: 'rick@rolled.com'
+      fill_in :first_name, with: 'Rick'
+      fill_in :last_name, with: 'Astley'
+      fill_in :password, with: '12345'
+      fill_in :password_confirmation, with: '12345'
 
       click_on 'Create Account'
 
