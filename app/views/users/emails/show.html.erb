@@ -1,0 +1,6 @@
+<h1>Thank you! Your account is now activated <%= @user.first_name %>.</h1>
+<% if current_user.nil? or current_user.id != @user.id %>
+  <%= link_to 'Turing Tutorials Home', root_path %>
+<% else %>
+  <%= link_to "#{@user.first_name}'s Dashboard", dashboard_path %>
+<% end %>

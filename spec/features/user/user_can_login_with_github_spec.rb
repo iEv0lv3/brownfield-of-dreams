@@ -15,7 +15,7 @@ RSpec.describe 'GET /auth/github/callback', type: :request do
           email: 'jordan@example.com'
         },
         credentials: {
-          token: '123456',
+          github_token: '123456',
           expires_at: false
         }
       }
@@ -34,7 +34,7 @@ RSpec.describe 'GET /auth/github/callback', type: :request do
       expect(response.header['Location']).to eq("http://www.example.com/auth/github/callback")
       expect(@session['info']['first_name']).to eq('Jordan')
       expect(@session['info']['email']).to eq('jordan@example.com')
-      expect(@session['credentials']['token']).to eq('123456')
+      expect(@session['credentials']['github_token']).to eq('123456')
 
     end
   end
