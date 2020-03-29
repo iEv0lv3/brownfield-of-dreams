@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   def show
-    @user = User.find_by(id: current_user.id)
     @facade = UserVideosFacade.new(current_user)
   end
 
