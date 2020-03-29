@@ -12,9 +12,24 @@
       <li>This account has not yet been activated. Please check your email.</li>
     <% end %>
   </ul>
-  <section>
+
+  <section class="bookmarks">
     <h1>Bookmarked Segments</h1>
+      <% @facade.find_bookmarks %>
+      <% if @facade.bookmarks.empty? == false %>
+        <% @facade.bookmarks.each do |tutorial_id, video| %>
+          <section id="tutorial-<%= tutorial_id %>">
+            <h4><%= video[0].tutorial.title %></h4>
+            <ul>
+              <% video.each do |list_video| %>
+                <li><%= list_video.title %></li>
+              <% end %>
+            </ul>
+          </section>
+        <% end %>
+      <% end %>
   </section>
+
   <% if !current_user.github_token.nil? %>
     <section class='github'>
       <section class='repos'>
