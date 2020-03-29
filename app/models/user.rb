@@ -39,6 +39,13 @@ class User < ApplicationRecord
     end
   end
 
+  def my_bookmarks
+    Video.joins(:user_videos)
+         .where("user_videos.user_id = #{id}")
+         .order(:tutorial_id)
+         .order(:position)
+  end
+
   private
 
   def activation_token
