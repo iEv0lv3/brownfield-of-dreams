@@ -1,18 +1,18 @@
 <main class="tutorials">
 <h2><%= @facade.title %></h2>
 <h1 id="message"></h1>
-<%if @facade.videos.empty?%>
-<div class="col col-4">
-  <h4>Videos</h4>
-  <ul>
-    <% @facade.videos.each do |video| %>
-      <li>
-        <h3><%= link_to video.title, tutorial_path(video_id: video.id), class: "show-link", id: video.position %></h3>
-      </li>
-    <% end %>
-    <% end %>
-  </ul>
-</div>
+<%if !@facade.videos.empty? %>
+  <div class="col col-4">
+    <h4>Videos</h4>
+    <ul>
+      <% @facade.videos.each do |video| %>
+        <li>
+          <h3><%= link_to video.title, tutorial_path(video_id: video.id), class: "show-link", id: video.position %></h3>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <div class="col col-8">
   <div class="title-bookmark">
