@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def show
+    @user = User.find_by(id: current_user.id)
   end
 
   def new
@@ -10,8 +11,8 @@ class UsersController < ApplicationController
     user = User.create(user_params)
     if user.save
       session[:user_id] = user.id
-      # AccountActivationMailer.inform(current_user).deliver_now
-      # flash[:success] = 'Please check your email to activate account.'
+      AccountActivationMailer.inform(user).deliver_now
+      flash[:success] = 'Please check your email to activate account.'
       redirect_to dashboard_path
     else
       flash[:error] = 'Username already exists'
