@@ -29,7 +29,7 @@ RSpec.describe 'As a user', type: :feature do
       visit '/dashboard'
 
       within(".github") do
-        expect(page).to have_content('User is not following anyone.')
+        expect(page).to have_link('iEv0lv3')
       end
     end
   end
