@@ -20,24 +20,24 @@ class User < ApplicationRecord
   has_secure_password
 
   def my_repos
-    github_service = GithubService.new(self.github_token)
-    repos = github_service.repos
+    github_service = GithubService.new(self)
+    repos = github_service.repo_data
     repos.map do |repo|
       Repo.new(repo)
     end
   end
 
   def my_followers
-    github_service = GithubService.new(self.github_token)
-    followers = github_service.followers
+    github_service = GithubService.new(self)
+    followers = github_service.follower_data
     followers.map do |follower|
       Follower.new(follower)
     end
   end
 
   def following
-    github_service = GithubService.new(self.github_token)
-    following = github_service.following
+    github_service = GithubService.new(self)
+    following = github_service.following_data
     following.map do |follower|
       Follower.new(follower)
     end

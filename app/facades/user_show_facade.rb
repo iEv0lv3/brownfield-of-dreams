@@ -1,4 +1,4 @@
-class UserVideosFacade
+class UserShowFacade
   attr_reader :user, :bookmarks, :user_friends
 
   def initialize(user)
