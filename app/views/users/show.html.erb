@@ -1,32 +1,36 @@
 <section class="dashboard-main">
   <h1> <%= current_user.first_name %>'s Dashboard </h1>
   <%= button_to 'Log Out', logout_path, method: 'delete', class: "btn btn-primary mb1 bg-teal" %>
-  <%= link_to "GitHub Login", '/auth/github' %>
+  <% if current_user.github_token.nil? %>
+    <%= link_to "Connect GitHub Account", '/auth/github' %>
+  <% end %>
 
   <h3>Account Details</h3>
   <ul>
     <li> <%= current_user.first_name  %> <%= current_user.last_name %> </li>
-    <li> <%= current_user.email%></li>
+    <li> <%= current_user.email %></li>
     <% if current_user.activated == 'false' %>
       <li>This account has not yet been activated. Please check your email.</li>
     <% end %>
   </ul>
 
-  <section class="bookmarks">
-    <h1>Bookmarked Segments</h1>
-      <% if @facade.bookmarks.empty? == false %>
-        <% @facade.bookmarks.each do |tutorial_id, video| %>
-          <section id="tutorial-<%= tutorial_id %>">
-            <h4><%= video[0].tutorial.title %></h4>
-            <ul>
-              <% video.each do |list_video| %>
-                <li><%= list_video.title %></li>
-              <% end %>
-            </ul>
-          </section>
+  <% if !@facade.bookmarks.empty? %>
+    <section class="bookmarks">
+      <h2>Bookmarked Segments</h2>
+        <% if @facade.bookmarks.empty? == false %>
+          <% @facade.bookmarks.each do |tutorial_id, video| %>
+            <section id="tutorial-<%= tutorial_id %>">
+              <h4><%= video[0].tutorial.title %></h4>
+              <ul>
+                <% video.each do |list_video| %>
+                  <li><%= list_video.title %></li>
+                <% end %>
+              </ul>
+            </section>
+          <% end %>
         <% end %>
-      <% end %>
-  </section>
+    </section>
+  <% end %>
 
   <% if !current_user.github_token.nil? %>
     <section class='github'>
@@ -65,7 +69,9 @@
               <li id="follower-<%= follower.name %>">
                 <%= link_to follower.name, follower.url %>
                 <% if current_user.add_friend?(follower) == true %>
-                 :: <%= link_to 'Add Friend', friendships_path(friend_id: follower.user), method: :post %>
+                  <ul>
+                    <li><%= button_to 'Add Friend', friendships_path, params: { friend_id: follower.user } %></li>
+                  </ul>
                 <% end %>
               </li>
             <% end %>
@@ -83,7 +89,9 @@
               <li id="following-<%= follower.name %>">
                 <%= link_to follower.name, follower.url %>
                 <% if current_user.add_friend?(follower) == true %>
-                 :: <%= link_to 'Add Friend', friendships_path(friend_id: follower.user), method: :post %>
+                  <ul>
+                    <li><%= button_to 'Add Friend', friendships_path, params: { friend_id: follower.user } %></li>
+                  </ul>
                 <% end %>
               </li>
             <% end %>
