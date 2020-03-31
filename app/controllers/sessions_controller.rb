@@ -16,7 +16,8 @@ class SessionsController < ApplicationController
 
   def update
     user_response = request.env['omniauth.auth']
-    current_user.update_column(:token, "#{user_response['credentials']['token']}")
+    current_user.update_column(:github_token, "#{user_response['credentials']['token']}")
+    current_user.update_column(:github_url, "#{user_response['info']['urls']['GitHub']}")
     redirect_to dashboard_path, notice: 'Connected to GitHub!'
   end
 

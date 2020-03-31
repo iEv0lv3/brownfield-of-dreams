@@ -1,6 +1,5 @@
 <section class="dashboard-main">
   <h1> <%= current_user.first_name %>'s Dashboard </h1>
-
   <%= button_to 'Log Out', logout_path, method: 'delete', class: "btn btn-primary mb1 bg-teal" %>
   <%= link_to "GitHub Login", '/auth/github' %>
 
@@ -15,7 +14,6 @@
 
   <section class="bookmarks">
     <h1>Bookmarked Segments</h1>
-      <% @facade.find_bookmarks %>
       <% if @facade.bookmarks.empty? == false %>
         <% @facade.bookmarks.each do |tutorial_id, video| %>
           <section id="tutorial-<%= tutorial_id %>">
@@ -43,6 +41,20 @@
         </ul>
       </section>
 
+      <% if !@facade.user_friends.empty? %>
+        <section class="friends">
+        <h2>Friends</h2>
+          <% @facade.user_friends.each do |friend| %>
+            <ul>
+              <li><%= friend.first_name + ' ' + friend.last_name %></li>
+              <ul>
+                <li><%= link_to 'GitHub Profile', friend.github_url  %></li>
+              </ul>
+            </ul>
+          <% end %>
+        </section>
+      <% end %>
+
       <section class='followers'>
         <h2>Followers:</h2>
         <% if current_user.my_followers.empty? %>
@@ -50,8 +62,11 @@
         <% else %>
           <ul>
             <% current_user.my_followers.each do |follower| %>
-              <li id="follower-<%= follower.id %>">
+              <li id="follower-<%= follower.name %>">
                 <%= link_to follower.name, follower.url %>
+                <% if current_user.add_friend?(follower) == true %>
+                 :: <%= link_to 'Add Friend', friendships_path(friend_id: follower.user), method: :post %>
+                <% end %>
               </li>
             <% end %>
           </ul>
@@ -65,8 +80,11 @@
         <% else %>
           <ul>
             <% current_user.following.each do |follower| %>
-              <li id="follower-<%= follower.id %>">
+              <li id="following-<%= follower.name %>">
                 <%= link_to follower.name, follower.url %>
+                <% if current_user.add_friend?(follower) == true %>
+                 :: <%= link_to 'Add Friend', friendships_path(friend_id: follower.user), method: :post %>
+                <% end %>
               </li>
             <% end %>
           </ul>

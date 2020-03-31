@@ -7,12 +7,16 @@ class User < ApplicationRecord
 
   has_many :user_videos
   has_many :videos, through: :user_videos
+  has_many :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
 
   validates :email, uniqueness: true, presence: true
   validates_presence_of :password
   validates_presence_of :first_name
+
   enum role: [:default, :admin]
   enum activated: ['false', 'true']
+
   has_secure_password
 
   def my_repos
@@ -44,6 +48,22 @@ class User < ApplicationRecord
          .where("user_videos.user_id = #{id}")
          .order(:tutorial_id)
          .order(:position)
+  end
+
+  def my_friend?(follower)
+    friends.include?(follower.user)
+  end
+
+  def add_friend?(follower)
+    follower.user.nil? == false && my_friend?(follower) == false
+  end
+
+  def create_friendship(friend_param)
+    friendship1 = Friendship.new(user_id: id, friend_id: friend_param)
+    friendship2 = Friendship.new(user_id: friend_param, friend_id: id)
+    if friendship1.save && friendship2.save
+      'success'
+    end
   end
 
   private
