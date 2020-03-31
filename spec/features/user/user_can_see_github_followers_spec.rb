@@ -29,7 +29,8 @@ RSpec.describe 'As a user', type: :feature do
       visit '/dashboard'
 
       within(".github") do
-        expect(page).to have_content('User has no followers.')
+        expect(page).to have_link('iEv0lv3')
+        expect(page).to have_link('alerrian')
       end
     end
   end
