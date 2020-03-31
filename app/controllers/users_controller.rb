@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @facade = UserVideosFacade.new(current_user)
+    @facade = UserShowFacade.new(current_user)
   end
 
   def new
