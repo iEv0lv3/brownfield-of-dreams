@@ -36,6 +36,15 @@ RSpec.describe User, type: :model do
         github_token: Figaro.env.github_personal_token.to_s,
         github_url: 'https://github.com/iEv0lv3'
       )
+
+      @user2 = User.create!(
+        first_name: 'Pierce',
+        last_name: 'Alworth',
+        email: 'pierce@mail.com',
+        password: 'none',
+        github_url: 'https://github.com/palworth',
+        github_token: Figaro.env.github_personal_token2.to_s
+      )
     end
 
     it 'my repos' do
@@ -48,6 +57,20 @@ RSpec.describe User, type: :model do
 
     it 'following' do
       expect(@user.following).to include(Follower)
+    end
+
+    it 'my friend?' do
+      follower = @user.my_followers[16]
+      expect(@user.my_friend?(follower)).to eq(false)
+    end
+
+    it 'add friend?' do
+      follower = @user.my_followers[16]
+      expect(@user.add_friend?(follower)).to eq(true)
+    end
+
+    it 'create friendship' do
+      expect(@user.create_friendship(@user2.id)).to eq('success')
     end
   end
 end
