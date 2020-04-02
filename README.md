@@ -1,18 +1,11 @@
 # Brownfield Of Dreams
 
-This is the base repo for a brownfield project used at Turing for Backend Mod 3.
+This is the base repo for a brownfield project used at Turing for Backend Mod 3. This application utilizes multiple APIs to create a dynamic content orgainization system. As a response to COVID-19, this web application will help aspiring programmers utilize some of Turing's resources without breaking thier bank. 
 
-Project Spec and Evaluation Rubric: https://github.com/turingschool-examples/brownfield-of-dreams
+**API's utilized**
 
-### Project Board
-
-Students will continue to build on the existing code base using the cards within the following Github Project: https://github.com/turingschool-examples/brownfield-of-dreams/projects/1
-
-**Learning Goals and Labels**
-
-The cards are labeled in a way that correspond to learning goals or to specific areas you might personally want to focus on.
-
-Cards should be completed from top to bottom in the To Do column. Cards labeled `good first issue` are good as filler work and will allow you to practice common Rails skills.
+1. Github API
+2. Youtube API
 
 ### About the Project
 
@@ -61,6 +54,20 @@ $ bundle exec rspec
 * [vcr](https://github.com/vcr/vcr)
 * [selenium-webdriver](https://www.seleniumhq.org/docs/03_webdriver.jsp)
 * [chromedriver-helper](http://chromedriver.chromium.org/)
+
+## Sign-in & Connect to Github
+[First, Register for an account](https://imgur.com/a/0kb2Wbz) 
+
+[Next, Click "Connect to github"](https://imgur.com/a/tbyMSn2)
+
+[Authorize Turing Turorials to connect to github](https://imgur.com/a/vfLnDB5)
+
+## Find & invite friends through github 
+Click link 'invite friends
+[![Screen-Shot-2020-04-02-at-11-26-52-AM.png](https://i.postimg.cc/2jvVQKbB/Screen-Shot-2020-04-02-at-11-26-52-AM.png)](https://postimg.cc/qgJJ0QGk)
+
+Search for your friend on github, if they have a public email, Turing Tutorials will automatically send them an invitation to register!
+[![Screen-Shot-2020-04-02-at-11-51-25-AM.png](https://i.postimg.cc/WzhKZHwW/Screen-Shot-2020-04-02-at-11-51-25-AM.png)](https://postimg.cc/8fgtQw3M)
 
 ### Versions
 * Ruby 2.4.1
