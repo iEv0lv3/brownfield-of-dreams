@@ -62,6 +62,11 @@ $ bundle exec rspec
 * [selenium-webdriver](https://www.seleniumhq.org/docs/03_webdriver.jsp)
 * [chromedriver-helper](http://chromedriver.chromium.org/)
 
+## Sign-in & Connect to Github
+![First, Register for an account](https://imgur.com/a/0kb2Wbz) 
+![Next, Click "Connect to github"](https://imgur.com/a/tbyMSn2)
+![Authorize Turing Turorials to connect to github](https://imgur.com/a/PebWB0V)
+
 ### Versions
 * Ruby 2.4.1
 * Rails 5.2.0
