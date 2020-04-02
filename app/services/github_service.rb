@@ -16,6 +16,10 @@ class GithubService
     get_json("/user/following")
   end
 
+  def find_users(username_of_invited)
+    get_json("users/#{username_of_invited}")
+  end
+
   private
 
     def get_json(url)

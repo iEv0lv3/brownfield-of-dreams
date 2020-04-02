@@ -1,0 +1,6 @@
+<h1> Invite Friends Using Github</h1>
+<%= form_tag '/invite', method: :post do %>
+<%= label_tag :github_handle %>
+<%= text_field_tag :github_handle %>
+<%= submit_tag 'Send Invite' %>
+<% end %>
