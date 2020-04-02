@@ -37,6 +37,9 @@ Rails.application.routes.draw do
   get '/about', to: 'about#show'
   get '/get_started', to: 'get_started#show'
 
+  get '/invite', to: 'invites#new'
+  post '/invite', to: 'invites#create'
+
   get '/auth/:provider/callback', to: 'sessions#update'
 
   # Is this being used?
