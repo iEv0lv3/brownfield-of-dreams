@@ -22,4 +22,32 @@ RSpec.describe User, type: :model do
       expect(admin.admin?).to be_truthy
     end
   end
+
+  describe 'model method tests', :vcr do
+    before :each do
+      @user = User.create!(
+        email: 'cg@mail.com',
+        first_name: 'Childish',
+        last_name: 'Gambino',
+        password: 'none',
+        role: :default,
+        activated: 1,
+        confirm_token: Faker::Crypto.md5,
+        github_token: Figaro.env.github_personal_token.to_s,
+        github_url: 'https://github.com/iEv0lv3'
+      )
+    end
+
+    it 'my repos' do
+      expect(@user.my_repos).to include(Repo)
+    end
+
+    it 'my followers' do
+      expect(@user.my_followers).to include(Follower)
+    end
+
+    it 'following' do
+      expect(@user.following).to include(Follower)
+    end
+  end
 end

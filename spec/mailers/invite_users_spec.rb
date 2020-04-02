@@ -31,5 +31,10 @@ RSpec.describe InviteUsersMailer, type: :feature do
     visit dashboard_path
 
     click_on 'Invite Friends'
+
+    fill_in 'github_handle', with: 'palworth'
+    click_on 'Send Invite'
+
+    expect(page).to have_content("The Github user you selected doesn't have an email address associated with their account.")
   end
 end
