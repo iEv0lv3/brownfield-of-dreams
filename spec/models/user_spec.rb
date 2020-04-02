@@ -72,5 +72,14 @@ RSpec.describe User, type: :model do
     it 'create friendship' do
       expect(@user.create_friendship(@user2.id)).to eq('success')
     end
+
+    it 'my bookmarks' do
+      videos = create_list(:video, 3)
+      create(:user_video, user_id: @user.id, video_id: videos[0].id)
+      create(:user_video, user_id: @user.id, video_id: videos[1].id)
+      create(:user_video, user_id: @user.id, video_id: videos[2].id)
+
+      expect(@user.my_bookmarks).to eq([videos[0], videos[1], videos[2]])
+    end
   end
 end
