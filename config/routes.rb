@@ -36,6 +36,9 @@ Rails.application.routes.draw do
   get '/about', to: 'about#show'
   get '/get_started', to: 'get_started#show'
 
+   get '/invite', to: 'invites#new'#, as: 'invite'
+  post '/invite', to: 'invites#create'#, as: 'invite_new'
+
   # GitHub OmniAuth
   get '/auth/:provider/callback', to: 'sessions#update'
 
