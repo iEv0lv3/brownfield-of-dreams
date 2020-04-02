@@ -14,7 +14,7 @@ class User < ApplicationRecord
   validates_presence_of :password
   validates_presence_of :first_name
 
-  enum role: [:default, :admin]
+  enum role: %i[default admin]
   enum activated: ['false', 'true']
 
   has_secure_password
@@ -61,16 +61,12 @@ class User < ApplicationRecord
   def create_friendship(friend_param)
     friendship1 = Friendship.new(user_id: id, friend_id: friend_param)
     friendship2 = Friendship.new(user_id: friend_param, friend_id: id)
-    if friendship1.save && friendship2.save
-      'success'
-    end
+    'success' if friendship1.save && friendship2.save
   end
 
   private
 
   def activation_token
-    if confirm_token.empty?
-      self.confirm_token = SecureRandom.hex(10)
-    end
+    self.confirm_token = SecureRandom.hex(10) if confirm_token.empty?
   end
 end

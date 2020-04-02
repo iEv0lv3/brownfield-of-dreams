@@ -1,7 +1,7 @@
 class Repo
   attr_reader :name, :url, :id
 
-  def initialize(data = Hash.new)
+  def initialize(data = {})
     @name = data[:name]
     @url = data[:html_url]
     @id = data[:id]

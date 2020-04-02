@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe 'vistor can create an account' do
-
   it ' visits the home page' do
     email = 'jimbob@aol.com'
     first_name = 'Jim'
@@ -36,7 +35,6 @@ describe 'vistor can create an account' do
   end
 end
 
-# This consistently thinks the form is empty
 # describe 'visitor can not create account' do
 #   it 'if username already exists' do
 #     User.create!(

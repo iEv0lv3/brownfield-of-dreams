@@ -8,7 +8,7 @@ RSpec.describe 'As a user', type: :feature do
       email: 'jordan@mail.com',
       password: 'none',
       github_url: 'https://github.com/iEv0lv3',
-      github_token: "#{ Figaro.env.github_personal_token }"
+      github_token: Figaro.env.github_personal_token.to_s
     )
 
     @user2 = User.create!(
@@ -17,7 +17,7 @@ RSpec.describe 'As a user', type: :feature do
       email: 'pierce@mail.com',
       password: 'none',
       github_url: 'https://github.com/palworth',
-      github_token: "#{ Figaro.env.github_personal_token2 }"
+      github_token: Figaro.env.github_personal_token2.to_s
     )
   end
 
@@ -27,17 +27,17 @@ RSpec.describe 'As a user', type: :feature do
 
       visit dashboard_path
 
-      within("#follower-palworth") do
+      within('#follower-palworth') do
         click_on 'Add Friend'
       end
 
       expect(page).to have_content('Added friend.')
 
-      within("#follower-palworth") do
+      within('#follower-palworth') do
         expect(page).to_not have_link('Add Friend')
       end
 
-      within("#following-palworth") do
+      within('#following-palworth') do
         expect(page).to_not have_link('Add Friend')
       end
     end
@@ -47,17 +47,17 @@ RSpec.describe 'As a user', type: :feature do
 
       visit dashboard_path
 
-      within("#following-palworth") do
+      within('#following-palworth') do
         click_on 'Add Friend'
       end
 
       expect(page).to have_content('Added friend.')
 
-      within("#follower-palworth") do
+      within('#follower-palworth') do
         expect(page).to_not have_link('Add Friend')
       end
 
-      within("#following-palworth") do
+      within('#following-palworth') do
         expect(page).to_not have_link('Add Friend')
       end
     end

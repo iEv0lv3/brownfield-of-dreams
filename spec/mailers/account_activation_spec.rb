@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'As a guest user', type: :feature do
   describe 'When I visit /' do
-
     it "I click the 'Register' link and should be on /register" do
-
       visit '/'
 
       click_on 'Register'
@@ -22,7 +20,7 @@ RSpec.describe 'As a guest user', type: :feature do
       expect(current_path).to eq(dashboard_path)
 
       expect(page).to have_content("Rick's Dashboard")
-      expect(page).to have_content("This account has not yet been activated. Please check your email.")
+      expect(page).to have_content('This account has not yet been activated. Please check your email.')
 
       user = User.last
 
@@ -30,6 +28,10 @@ RSpec.describe 'As a guest user', type: :feature do
 
       expect(page).to have_content("Thank you! Your account is now activated #{user.first_name}.")
       expect(page).to have_link("#{user.first_name}'s Dashboard")
+
+      activation = spy(AccountActivationMailer.inform(user, 'http://localhost:3000/users'))
+      activation.deliver
+      expect(activation).to have_received(:deliver)
     end
   end
 
@@ -52,7 +54,7 @@ RSpec.describe 'As a guest user', type: :feature do
       expect(current_path).to eq(dashboard_path)
 
       expect(page).to have_content("Rick's Dashboard")
-      expect(page).to have_content("This account has not yet been activated. Please check your email.")
+      expect(page).to have_content('This account has not yet been activated. Please check your email.')
 
       user = User.last
       user.confirm_token = ''
