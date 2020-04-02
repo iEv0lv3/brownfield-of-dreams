@@ -63,5 +63,5 @@ Rails.application.configure do
 
   # Use Mailcatcher to test email notifications
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+  config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
 end

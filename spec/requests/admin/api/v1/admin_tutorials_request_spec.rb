@@ -9,7 +9,7 @@ RSpec.describe 'API admin base controller' do
       password: 'none',
       role: 'admin',
       github_url: 'https://github.com/iEv0lv3',
-      github_token: "#{ Figaro.env.github_personal_token }"
+      github_token: Figaro.env.github_personal_token.to_s
     )
 
     @user2 = User.create!(
@@ -19,7 +19,7 @@ RSpec.describe 'API admin base controller' do
       password: 'none',
       role: 'default',
       github_url: 'https://github.com/palworth',
-      github_token: "#{ Figaro.env.github_personal_token2 }"
+      github_token: Figaro.env.github_personal_token2.to_s
     )
   end
 
