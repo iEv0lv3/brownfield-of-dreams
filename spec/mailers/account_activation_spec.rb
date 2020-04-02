@@ -32,4 +32,34 @@ RSpec.describe 'As a guest user', type: :feature do
       expect(page).to have_link("#{user.first_name}'s Dashboard")
     end
   end
+
+  describe 'Account activation sad path' do
+    it "Can't activate if token doesn't exist" do
+      visit '/'
+
+      click_on 'Register'
+
+      expect(current_path).to eq(register_path)
+
+      fill_in 'user[email]', with: 'rick@rolled.com'
+      fill_in 'user[first_name]', with: 'Rick'
+      fill_in 'user[last_name]', with: 'Astley'
+      fill_in 'user[password]', with: '12345'
+      fill_in 'user[password_confirmation]', with: '12345'
+
+      click_on 'Create Account'
+
+      expect(current_path).to eq(dashboard_path)
+
+      expect(page).to have_content("Rick's Dashboard")
+      expect(page).to have_content("This account has not yet been activated. Please check your email.")
+
+      user = User.last
+      user.confirm_token = ''
+
+      visit "/users/activate?confirm=#{user.confirm_token}"
+
+      expect(page).to have_content('Sorry, activation token does not exist')
+    end
+  end
 end
